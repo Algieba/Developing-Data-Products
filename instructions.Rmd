@@ -1,0 +1,69 @@
+## Introduction
+
+This app show information about survival of passengers on the Titanic. Show a
+graph and a table with the selected data.
+
+The information about survival can be filtered by three categories: 'Class',
+'Sex' and 'Age'.
+
+Results can be show by a pie or by a bar graph.
+
+When the user change some thing in a category, or charge the graph type, the
+table and the graph are automatically updated.
+
+## Categories
+
+### Class
+
+We can chouse 5 values for this category. The values are:
+
+- 'All'. You must select this value when you don't want filter data by 'Class'.
+- '1 st'. First class passengers.
+- '2 nd'. Second class passengers.
+- '3 rd'. Third class passengers.
+- 'Crew'. Crew of the Titanic.
+
+### Sex
+
+This category has three values:
+
+- 'All'. You must select this value when you don't want filter data by 'Sex'.
+- 'Male'. Male passengers.
+- 'Female'. Female passengers.
+
+### Age
+
+The values for this category are:
+
+- 'All'. You must select this value when you don't want filter data by 'Age'.
+- 'Child'. For children.
+- 'Adult'. For adults.
+
+## Type of Graph
+
+You can choose between two types of chart:
+
+- 'Bar'. When you want a traditional bar chart.
+- 'Pie'. A ggplot chart with polar coordenates. This is the default value.
+
+## Auxiliary panels
+
+There are three auxiliary panels.
+
+### App Documentation
+
+This panel show us information about the app and its caracteristics.
+
+### ui.R
+
+In this panel we can see the code of the application (user interface).
+
+### server.R
+
+Show the code of the server component for the application.
+
+## Github links
+
+You can find all the files of this project here:
+
+[https://github.com/Algieba/Developing-Data-Products](https://github.com/Algieba/Developing-Data-Products)

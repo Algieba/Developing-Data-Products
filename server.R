@@ -1,0 +1,41 @@
+library(shiny)
+library(ggplot2)
+
+shinyServer(function(input, output, session) {
+
+      # Combine the selected variables into a new data frame
+      selectedData <- reactive({
+            if (input$class != " ") dataSet <- subset(dataSet,
+                                                      Class == input$class,
+                                                      select = c(1:5))
+            if (input$sex != " ") dataSet <- subset(dataSet,
+                                                    Sex == input$sex,
+                                                    select = c(1:5))
+            if (input$age != " ") dataSet <- subset(dataSet,
+                                                    Age == input$age,
+                                                    select = c(1:5))
+            dataSetAggregate <-aggregate(Freq ~ Survived, data = dataSet, sum)
+      })
+
+      # Generate an HTML plot
+      output$plot1 <- renderPlot({
+            par(mar = c(5.1, 4.1, 0, 1))
+            if (input$graphType == "polar") {
+                  ggplot(selectedData(), aes(x = "",
+                                             y = Freq, fill = Survived)) +
+                  geom_bar(width = 1, stat = "identity") +
+                  scale_fill_manual(values = c("red", "yellow")) +
+                  coord_polar("y", start = pi / 3) +
+                  labs(title = "")
+            }
+            else {
+                   qplot(x = Survived, y = Freq, data=selectedData(),
+                         geom="bar", fill=Survived, stat="identity")
+            }
+      })
+
+      # Generate an HTML table view of the data
+      output$table <- renderTable({
+            selectedData()
+      })
+})
