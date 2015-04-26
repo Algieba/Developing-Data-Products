@@ -93,11 +93,11 @@ shinyUI(pageWithSidebar(
             # 'ui.R' file and 'server.R' file.
             tabsetPanel(type = &quot;tabs&quot;,
                         tabPanel(&quot;App Documentation&quot;,
-                                 includeMarkdown(&quot;instructions.md&quot;)),
+                                 includeHTML(&quot;instructions.html&quot;)),
                         tabPanel(&quot;ui.R&quot;,
-                                 includeMarkdown(&quot;ui.R.md&quot;)),
+                                 includeHTML(&quot;ui.R.html&quot;)),
                         tabPanel(&quot;server.R&quot;,
-                                 includeMarkdown(&quot;server.R.md&quot;))
+                                 includeHTML(&quot;server.R.html&quot;))
             )
       )
 ))</code></pre>

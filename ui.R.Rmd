@@ -1,3 +1,4 @@
+
 ```{r eval=FALSE}
 library(shiny)
 library(ggplot2)
@@ -31,11 +32,11 @@ shinyUI(pageWithSidebar(
             # 'ui.R' file and 'server.R' file.
             tabsetPanel(type = "tabs",
                         tabPanel("App Documentation",
-                                 includeMarkdown("instructions.md")),
+                                 includeHTML("instructions.html")),
                         tabPanel("ui.R",
-                                 includeMarkdown("ui.R.md")),
+                                 includeHTML("ui.R.html")),
                         tabPanel("server.R",
-                                 includeMarkdown("server.R.md"))
+                                 includeHTML("server.R.html"))
             )
       )
 ))
