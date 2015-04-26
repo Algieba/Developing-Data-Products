@@ -1,0 +1,138 @@
+---
+title       : Survival of passengers on the Titanic 
+subtitle    : Developing Data Products - Project 
+author      : Antonio Lloris Amor
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []  # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Introduction
+
+- This presentation show information about 'Survival' app. 'Survival' app let us
+filter the information in 'Titanic' dataset and show the results by a chart and 
+a data table.
+
+- 'Titanic' data set provides information on the fate of passengers on the fatal
+maiden voyage of the ocean liner 'Titanic', summarized according to economic
+status (class), sex, age and survival.
+
+- Our app let us filter that information by 'Class', 'Sex' and 'Age' and give the
+numbers of survival and no survival passengers. The results can be show by a pie
+or by a bar graph and a table.
+
+- When the user change some thing in a category, or charge the graph type, the
+table and the graph are automatically updated. 
+
+---
+
+## 'Titanic' Dataset
+
+This dataset is included in package 'datasets' version 3.1.3. Originally is a 
+matrix with 4 dimensions, but we transform it to a data frame because is easier
+to handle.
+
+```{r}
+head(dataSet <- as.data.frame(Titanic),10)
+```
+
+---
+
+## Filtering Elements
+### Class
+
+We can chouse 5 values for this category. Four of this values are from dataset,
+but 'All' must be added for let us don't use this category like filtering element.
+The values are:
+
+```{r}
+levels(dataSet$Class)
+```
+
+- 'All'.
+- '1st'. First class passengers.
+- '2nd'. Second class passengers.
+- '3rd'. Third class passengers.
+- 'Crew'. Crew of the Titanic.
+
+---
+
+### Sex
+
+This category has three values (two from original dataset and 'All' added by us):
+
+```{r}
+levels(dataSet$Sex)
+```
+
+- 'All'. You must select this value when you don't want filter data by 'Sex'.
+- 'Male'. Male passengers.
+- 'Female'. Female passengers.
+
+---
+
+### Age
+
+The values for this category are (two from original dataset and 'All' added by us):
+
+```{r}
+levels(dataSet$Age)
+```
+
+- 'All'. You must select this value when you don't want filter data by 'Age'.
+- 'Child'. For children.
+- 'Adult'. For adults.
+
+---
+
+## Type of Graph
+
+- 'Bar'. When you want a traditional bar chart.
+
+```{r echo=FALSE}
+library(ggplot2)
+dataSetAggregate <-aggregate(Freq ~ Survived, data = dataSet, sum)
+```
+
+```{r echo=FALSE}
+par(mar = c(5.1, 4.1, 0, 1))
+qplot(x = Survived, y = Freq, data=dataSetAggregate,
+      geom="bar", fill=Survived, stat="identity")
+```
+
+---
+
+- 'Pie'. A ggplot chart with polar coordenates. This is the default value.
+
+```{r echo=FALSE}
+ggplot(dataSetAggregate, aes(x = "",
+                           y = Freq, fill = Survived)) +
+geom_bar(width = 1, stat = "identity") +
+scale_fill_manual(values = c("red", "yellow")) +
+coord_polar("y", start = pi / 3) +
+labs(title = "")
+```
+
+---
+
+## Auxiliary panels
+
+There are three auxiliary panels.
+
+### App Documentation
+
+This panel show us information about the app and its caracteristics. The content
+of this panel is obtained from the file 'instructions.html'.
+
+### ui.R
+
+In this panel we can see the code of the application (user interface), obtained
+from 'ui.R.html'.
+
+### server.R
+
+Show the code of the server component for the application. This code is obtained
+from 'server.R.html'.
