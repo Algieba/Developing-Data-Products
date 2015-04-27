@@ -3,6 +3,7 @@
 library(shiny)
 library(ggplot2)
 
+data(Titanic)
 dataSet <- as.data.frame(Titanic)
 
 shinyUI(pageWithSidebar(
